@@ -4,6 +4,8 @@ import { s3 } from "@/services/s3/minio";
 
 import { logger } from "../utils/logger";
 
+const PREFIX = "rag-tax";
+
 /**
  * Synchronizes the RAG system with the MinIO bucket:
  * 1. Adds new files from the bucket to the RAG system
@@ -22,7 +24,7 @@ async function syncBucket() {
 
   logger.progress("Fetching objects from MinIO bucket...");
   const bucketStartTime = Date.now();
-  const objects = await s3.listObjects();
+  const objects = await s3.listObjects(PREFIX);
   const bucketTime = Date.now() - bucketStartTime;
   logger.success(`Found ${objects.length} objects in bucket (${bucketTime}ms)`);
 

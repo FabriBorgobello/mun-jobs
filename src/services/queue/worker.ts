@@ -82,14 +82,7 @@ const worker = new Worker<IngestionJob>(
       throw error;
     }
   },
-  {
-    connection: {
-      host: env.REDIS_HOST,
-      port: env.REDIS_PORT,
-      username: env.REDIS_USERNAME,
-      password: env.REDIS_PASSWORD,
-    },
-  },
+  { connection: { url: env.REDIS_URL } },
 );
 
 worker.on("completed", (job) => {

@@ -1,8 +1,9 @@
-import { integer, pgTable, text, timestamp, uuid, vector } from "drizzle-orm/pg-core";
+import { integer, text, timestamp, uuid, vector } from "drizzle-orm/pg-core";
 
+import { munPgTable } from "../utils";
 import { files } from "./files";
 
-export const chunks = pgTable("chunks", {
+export const chunks = munPgTable("chunks", {
   id: uuid("id").primaryKey().defaultRandom(),
   fileId: uuid("file_id")
     .notNull()

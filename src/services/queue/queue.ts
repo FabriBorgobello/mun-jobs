@@ -8,12 +8,7 @@ interface IngestionJob {
 }
 
 export const ingestionQueue = new Queue<IngestionJob>("ingest", {
-  connection: {
-    host: env.REDIS_HOST,
-    port: env.REDIS_PORT,
-    username: env.REDIS_USERNAME,
-    password: env.REDIS_PASSWORD,
-  },
+  connection: { url: env.REDIS_URL },
   defaultJobOptions: {
     attempts: 3,
     backoff: { type: "exponential", delay: 1000 },

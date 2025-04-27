@@ -1,6 +1,8 @@
-import { pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import { text, timestamp, uuid } from "drizzle-orm/pg-core";
 
-export const files = pgTable("files", {
+import { munPgTable } from "../utils";
+
+export const files = munPgTable("files", {
   id: uuid("id").primaryKey().defaultRandom(),
   name: text("name").notNull(), // filename
   etag: text("etag").notNull(), // hash or identifier from MinIO
